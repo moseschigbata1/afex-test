@@ -1,0 +1,38 @@
+{% extends "afex/base.html" %}
+{% block body_block %}
+<div class="container">
+  <div class="jumbotron">
+    {% comment %} <h1>Welcome to the Djungle !</h1> {% endcomment %}
+    {% if user.is_authenticated %}
+        <h2>Hello {{ user.username }}</h2>
+       
+            <a href="{% url 'afexapp:save_task' %}">Create a task</a>
+            {% if task %}
+                <table>
+                    <thead>
+                        <tr>
+                        <th>task</th>
+                        <th>Description</th>
+                        <th>Due date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for task in task %}
+                        <tr>
+                            <td>{{task.task}}</td>
+                            <td>{{task.description}}</td>
+                            <td>{{task.date}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                <table>
+                {% else %}
+                <h2>You dont have any task at the moment</h2>
+                {% endif %}
+         
+     {% else %}
+        <h2>Register or Login if you'd like to</h2>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

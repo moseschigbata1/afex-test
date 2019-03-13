@@ -1,0 +1,24 @@
+{% extends 'afex/base.html' %}
+{% block body_block %}
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Create a task :</h1>
+<form method="post" action="{% url 'afexapp:save_task' %}">
+          {% csrf_token %}
+          {# A more "HTML" way of creating the login form#}
+          <label for="task">task:</label>
+          <input type="text" name="task" placeholder=""><br>
+<label for="description">Description:</label>
+          <input type="text" name="description" placeholder=""><br>
+          <label for="date">Date:</label>
+          <input type="date" name="date" placeholder=""><br>
+<input type="submit" name="" value="create task">
+</form>
+{% comment %} <form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+</form> {% endcomment %}
+</div>
+  </div>
+{% endblock %}
